@@ -1,43 +1,49 @@
-function calcularGypsum() {
-  let area = parseFloat(document.getElementById("area").value);
-  if (isNaN(area) || area <= 0) {
-    document.getElementById("resultado").innerHTML = 
-      "<p style='color:red;'>⚠️ Por favor ingresa un valor válido.</p>";
+function calcular(){
+  const areaInput = document.getElementById("area");
+  const resultado  = document.getElementById("resultado");
+  const area = parseFloat(areaInput.value);
+
+  // Validación
+  if (isNaN(area) || area <= 0){
+    resultado.style.display = "block";
+    resultado.innerHTML = `<p>⚠️ Por favor ingresa un valor válido 🌸</p>`;
     return;
   }
 
-  // 🔹 Rendimientos aproximados por m² (pueden ajustarse según normas locales)
-  let plancha = 1 / 3;          // 1 plancha de 1.22x2.44 cubre ~3m²
-  let tornillos = 25;           // 25 tornillos por m²
-  let primarios = 1 / 10;       // 1 perfil primario cada 10m²
-  let secundarios = 1 / 5;      // 1 perfil secundario cada 5m²
-  let romeral = 1 / 8;          // 1 kg romeral cada 8m²
-  let empaste = 1 / 20;         // 1 saco de 25kg cada 20m²
-  let cinta = 1 / 25;           // 1 rollo por 25m²
-  let pintura = 0.2;            // 0.2 galones por m² (2 manos)
+  /* 
+    Rendimientos aproximados por m² (ajústalos a tu estándar):
+    - Planchas: 1 plancha ≈ 3 m² → planchas = área / 3
+    - Tornillos: 15–25 por m² → aquí: 15
+    - Primarios (unid): 0.5 / m²
+    - Secundarios (unid): 1 / m²
+    - Romeral (kg): 0.8 / m²
+    - Empaste (kg): 0.5 / m²
+    - Cinta malla (m): 1.2 / m²
+    - Pintura (gal): 1 gal / 10 m² (2 manos)
+  */
 
-  // 🔹 Cálculos
-  let totalPlanchas = Math.ceil(area * plancha);
-  let totalTornillos = Math.ceil(area * tornillos);
-  let totalPrimarios = Math.ceil(area * primarios);
-  let totalSecundarios = Math.ceil(area * secundarios);
-  let totalRomeral = (area * romeral).toFixed(1);
-  let totalEmpaste = Math.ceil(area * empaste);
-  let totalCinta = Math.ceil(area * cinta);
-  let totalPintura = (area * pintura).toFixed(1);
+  const planchas   = (area / 3).toFixed(1);
+  const tornillos  = Math.ceil(area * 15);
+  const primarios  = Math.ceil(area * 0.5);
+  const secundarios= Math.ceil(area * 1.0);
+  const romeral    = (area * 0.8).toFixed(1);   // kg
+  const empaste    = (area * 0.5).toFixed(1);   // kg
+  const cinta      = (area * 1.2).toFixed(1);   // metros
+  const pintura    = (area / 10).toFixed(1);    // galones
 
-  // 🔹 Mostrar resultados
-  document.getElementById("resultado").innerHTML = `
-    <h3>📋 Resultados para <b>${area} m²</b>:</h3>
+  // Mostrar resultados
+  resultado.style.display = "block";
+  resultado.innerHTML = `
+    <h3>✨ Resultados para ${area} m² ✨</h3>
     <ul>
-      <li>🪵 <b>${totalPlanchas}</b> planchas de gypsum</li>
-      <li>🔩 <b>${totalTornillos}</b> tornillos</li>
-      <li>📏 <b>${totalPrimarios}</b> perfiles primarios</li>
-      <li>📐 <b>${totalSecundarios}</b> perfiles secundarios</li>
-      <li>⚖️ <b>${totalRomeral}</b> kg de romeral</li>
-      <li>🪣 <b>${totalEmpaste}</b> sacos de empaste (25kg)</li>
-      <li>📎 <b>${totalCinta}</b> rollos de cinta malla de vidrio</li>
-      <li>🎨 <b>${totalPintura}</b> galones de pintura (2 manos)</li>
+      <li>📄 <b>Planchas de gypsum:</b> ${planchas} unidades</li>
+      <li>🔩 <b>Tornillos:</b> ${tornillos} unidades</li>
+      <li>📏 <b>Primarios:</b> ${primarios} unidades</li>
+      <li>📐 <b>Secundarios:</b> ${secundarios} unidades</li>
+      <li>⚖️ <b>Romeral:</b> ${romeral} kg</li>
+      <li>🪣 <b>Empaste:</b> ${empaste} kg</li>
+      <li>🧵 <b>Cinta malla de vidrio:</b> ${cinta} m</li>
+      <li>🎨 <b>Pintura:</b> ${pintura} galones</li>
     </ul>
   `;
 }
