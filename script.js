@@ -6,12 +6,15 @@ function calcular(){
   // Validación
   if (isNaN(area) || area <= 0){
     resultado.style.display = "block";
-    resultado.innerHTML = `<p>⚠️ Por favor ingresa un valor válido 🌸</p>`;
+    resultado.innerHTML = `
+      <h3 class="result-title">⚠️ ¡Ups! 🌸</h3>
+      <p style="text-align: center; font-size: 12px; color: #666;">Por favor ingresa un valor válido</p>
+    `;
     return;
   }
 
-  /* 
-    Rendimientos aproximados por m² (ajústalos a tu estándar):
+  /*
+     Rendimientos aproximados por m² (ajústalos a tu estándar):
     - Planchas: 1 plancha ≈ 3 m² → planchas = área / 3
     - Tornillos: 15–25 por m² → aquí: 15
     - Primarios (unid): 0.5 / m²
@@ -34,16 +37,60 @@ function calcular(){
   // Mostrar resultados
   resultado.style.display = "block";
   resultado.innerHTML = `
-    <h3>✨ Resultados para ${area} m² ✨</h3>
-    <ul>
-      <li>📄 <b>Planchas de gypsum:</b> ${planchas} unidades</li>
-      <li>🔩 <b>Tornillos:</b> ${tornillos} unidades</li>
-      <li>📏 <b>Primarios:</b> ${primarios} unidades</li>
-      <li>📐 <b>Secundarios:</b> ${secundarios} unidades</li>
-      <li>⚖️ <b>Romeral:</b> ${romeral} kg</li>
-      <li>🪣 <b>Empaste:</b> ${empaste} kg</li>
-      <li>🧵 <b>Cinta malla de vidrio:</b> ${cinta} m</li>
-      <li>🎨 <b>Pintura:</b> ${pintura} galones</li>
+    <h3 class="result-title">✨ Para ${area} m² necesitas ✨</h3>
+    <ul class="result-list">
+      <li class="result-item">
+        <span class="item-emoji">📄</span>
+        <span class="item-text">Planchas:</span>
+        <span class="item-value">${planchas}</span>
+      </li>
+      <li class="result-item">
+        <span class="item-emoji">🔩</span>
+        <span class="item-text">Tornillos:</span>
+        <span class="item-value">${tornillos}</span>
+      </li>
+      <li class="result-item">
+        <span class="item-emoji">📏</span>
+        <span class="item-text">Primarios:</span>
+        <span class="item-value">${primarios}</span>
+      </li>
+      <li class="result-item">
+        <span class="item-emoji">📐</span>
+        <span class="item-text">Secundarios:</span>
+        <span class="item-value">${secundarios}</span>
+      </li>
+      <li class="result-item">
+        <span class="item-emoji">⚖️</span>
+        <span class="item-text">Romeral:</span>
+        <span class="item-value">${romeral} kg</span>
+      </li>
+      <li class="result-item">
+        <span class="item-emoji">🪣</span>
+        <span class="item-text">Empaste:</span>
+        <span class="item-value">${empaste} kg</span>
+      </li>
+      <li class="result-item">
+        <span class="item-emoji">🧵</span>
+        <span class="item-text">Cinta malla:</span>
+        <span class="item-value">${cinta} m</span>
+      </li>
+      <li class="result-item">
+        <span class="item-emoji">🎨</span>
+        <span class="item-text">Pintura:</span>
+        <span class="item-value">${pintura} gal</span>
+      </li>
     </ul>
   `;
 }
+
+// Animación kawaii al cargar
+window.addEventListener('load', () => {
+  document.querySelector('.calculator').style.animation = 'fadeIn 0.6s ease';
+});
+
+// Enter para calcular
+document.getElementById('area').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    calcular();
+  }
+});
