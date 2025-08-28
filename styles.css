@@ -1,49 +1,68 @@
+/* Estilo general */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-  color: #202124;
-  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f3f4f6;
+  color: #333;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
-/* Encabezado */
+/* Header con perfil */
 .perfil {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 10px 20px;
-  border-bottom: 1px solid #dadce0;
+  padding: 15px 25px;
+  background: #1a73e8;
+  color: white;
 }
 
 .perfil img {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-left: 10px;
+  margin-left: 12px;
 }
 
-/* Caja */
-.contenedor {
-  margin-top: 50px;
+.nombre {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Caja principal */
+.card {
+  max-width: 500px;
+  background: white;
+  padding: 25px;
+  margin: 40px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: #1a73e8;
 }
 
 input {
-  padding: 10px;
-  width: 200px;
-  margin: 5px;
-  border: 1px solid #dadce0;
-  border-radius: 5px;
+  padding: 12px;
+  width: 70%;
+  margin: 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 25px;
   background-color: #1a73e8;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
+  transition: 0.3s;
 }
 
 button:hover {
@@ -52,8 +71,16 @@ button:hover {
 
 .resultado {
   margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
   text-align: left;
-  display: inline-block;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Footer */
+footer {
+  margin-top: 30px;
+  padding: 15px;
+  background: #e5e7eb;
+  color: #555;
+  font-size: 14px;
 }
