@@ -83,14 +83,28 @@ function calcular(){
   `;
 }
 
-// Animación kawaii al cargar
-window.addEventListener('load', () => {
-  document.querySelector('.calculator').style.animation = 'fadeIn 0.6s ease';
-});
+// Esperar a que el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Asignar evento al botón
+  const calcularBtn = document.querySelector('.calculate-btn');
+  if (calcularBtn) {
+    calcularBtn.addEventListener('click', calcular);
+  }
+  
+  // Enter para calcular
+  const areaInput = document.getElementById('area');
+  if (areaInput) {
+    areaInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        calcular();
+      }
+    });
+  }
 
-// Enter para calcular
-document.getElementById('area').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    calcular();
+  // Animación kawaii al cargar
+  const calculator = document.querySelector('.calculator');
+  if (calculator) {
+    calculator.style.animation = 'fadeIn 0.6s ease';
   }
 });
