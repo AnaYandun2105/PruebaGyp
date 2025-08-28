@@ -83,9 +83,16 @@ function calcular(){
   `;
 }
 
+// Función de cálculo principal
 function calcular(){
   const areaInput = document.getElementById("area");
   const resultado  = document.getElementById("resultado");
+  
+  if (!areaInput || !resultado) {
+    alert("Error: No se encontraron los elementos necesarios");
+    return;
+  }
+  
   const area = parseFloat(areaInput.value);
 
   // Validación
@@ -98,26 +105,15 @@ function calcular(){
     return;
   }
 
-  /*
-     Rendimientos aproximados por m² (ajústalos a tu estándar):
-    - Planchas: 1 plancha ≈ 3 m² → planchas = área / 3
-    - Tornillos: 15–25 por m² → aquí: 15
-    - Primarios (unid): 0.5 / m²
-    - Secundarios (unid): 1 / m²
-    - Romeral (kg): 0.8 / m²
-    - Empaste (kg): 0.5 / m²
-    - Cinta malla (m): 1.2 / m²
-    - Pintura (gal): 1 gal / 10 m² (2 manos)
-  */
-
+  // Cálculos
   const planchas   = (area / 3).toFixed(1);
   const tornillos  = Math.ceil(area * 15);
   const primarios  = Math.ceil(area * 0.5);
   const secundarios= Math.ceil(area * 1.0);
-  const romeral    = (area * 0.8).toFixed(1);   // kg
-  const empaste    = (area * 0.5).toFixed(1);   // kg
-  const cinta      = (area * 1.2).toFixed(1);   // metros
-  const pintura    = (area / 10).toFixed(1);    // galones
+  const romeral    = (area * 0.8).toFixed(1);
+  const empaste    = (area * 0.5).toFixed(1);
+  const cinta      = (area * 1.2).toFixed(1);
+  const pintura    = (area / 10).toFixed(1);
 
   // Mostrar resultados
   resultado.style.display = "block";
@@ -168,28 +164,14 @@ function calcular(){
   `;
 }
 
-// Esperar a que el DOM esté listo
+// Event listeners adicionales
 document.addEventListener('DOMContentLoaded', function() {
-  
-  // Asignar evento al botón
-  const calcularBtn = document.querySelector('.calculate-btn');
-  if (calcularBtn) {
-    calcularBtn.addEventListener('click', calcular);
-  }
-  
-  // Enter para calcular
   const areaInput = document.getElementById('area');
   if (areaInput) {
-    areaInput.addEventListener('keypress', (e) => {
+    areaInput.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         calcular();
       }
     });
-  }
-
-  // Animación kawaii al cargar
-  const calculator = document.querySelector('.calculator');
-  if (calculator) {
-    calculator.style.animation = 'fadeIn 0.6s ease';
   }
 });
